@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "@acme/eslint-config",
+  "version": "1.0.0",
+  "description": "Acme eslint configuration for React Native",
+  "author": "Cedric van Putten <me@bycedric.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "lint": "eslint --ext js,ts,tsx ."
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "eslint": "^9.27.0",
+    "eslint-config-universe": "^15.0.3",
+    "prettier": "^3.5.3"
+  },
+  "eslintConfig": {
+    "extends": "."
+  }
+}
