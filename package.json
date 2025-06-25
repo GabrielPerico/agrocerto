@@ -1,14 +1,16 @@
 {
   "private": true,
   "name": "@acme/monorepo",
-  "packageManager": "pnpm@9.9.0",
+  "packageManager": "pnpm@10.12.1",
   "scripts": {
     "dev": "turbo dev",
-    "dev:example": "turbo dev --filter=\"{./apps/expo-app}...\"",
+    "dev:example": "turbo dev --filter=\"{./apps/agrocerto}...\"",
     "lint": "turbo lint",
     "test": "turbo test",
     "build": "turbo build",
-    "build:example": "turbo build --filter=\"...{./apps/expo-app}\""
+    "build:example": "turbo build --filter=\"...{./apps/agrocerto}\"",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "devDependencies": {
     "turbo": "^2.5.3",
@@ -19,5 +21,12 @@
     "tabWidth": 2,
     "singleQuote": true,
     "trailingComma": "es5"
+  },
+  "version": "1.0.0",
+  "dependencies": {
+    "expo": "~53.0.12",
+    "expo-router": "~5.1.0",
+    "react": "19.0.0",
+    "react-native": "0.79.4"
   }
 }
