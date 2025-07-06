@@ -9,8 +9,9 @@
     "test": "turbo test",
     "build": "turbo build",
     "build:example": "turbo build --filter=\"...{./apps/agrocerto}\"",
-    "android": "expo run:android",
-    "ios": "expo run:ios"
+    "android": "cd apps/agrocerto && expo run:android",
+    "ios": "cd apps/agrocerto && expo run:ios",
+    "prebuild": "cd apps/agrocerto && expo prebuild --clean"
   },
   "devDependencies": {
     "turbo": "^2.5.3",
@@ -24,9 +25,8 @@
   },
   "version": "1.0.0",
   "dependencies": {
-    "expo": "~53.0.12",
-    "expo-router": "~5.1.0",
+    "expo": "~53.0.17",
     "react": "19.0.0",
-    "react-native": "0.79.4"
+    "react-native": "0.79.5"
   }
 }
