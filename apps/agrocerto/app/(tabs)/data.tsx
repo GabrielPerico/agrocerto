@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Trash2, Calendar, Droplets, Gauge } from 'lucide-react-native';
@@ -9,10 +9,13 @@ import { useFocusEffect } from '@react-navigation/native';
 export default function DataScreen() {
   const [savedCalculations, setSavedCalculations] = useState<SavedCalculation[]>([]);
   const [loading, setLoading] = useState(true);
+  const scrollViewRef = useRef<ScrollView>(null);
 
   useFocusEffect(
     useCallback(() => {
       loadSavedCalculations();
+      // Scroll to top when screen gains focus
+      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
     }, [])
   );
 
@@ -78,7 +81,7 @@ export default function DataScreen() {
         <Text style={styles.headerSubtitle}>{savedCalculations.length} cálculos salvos</Text>
       </View>
 
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView ref={scrollViewRef} style={styles.content} showsVerticalScrollIndicator={false}>
         {savedCalculations.map((calculation, i, arr) => (
           <View
             key={calculation.id}

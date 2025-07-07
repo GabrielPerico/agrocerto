@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useFocusEffect } from '@react-navigation/native';
 import StepIndicator from '@/components/StepIndicator';
 import SprayerSelection from '@/components/calculator/SprayerSelection';
 import CalculationType from '@/components/calculator/CalculationType';
@@ -11,6 +12,7 @@ import { CalculationData } from '@/types/calculator';
 
 export default function CalculateScreen() {
   const [currentStep, setCurrentStep] = useState(1);
+  const scrollViewRef = useRef<ScrollView>(null);
   const [calculationData, setCalculationData] = useState<CalculationData>({
     sprayerType: null,
     calculationMethod: null,
@@ -21,6 +23,13 @@ export default function CalculateScreen() {
   });
 
   const totalSteps = 5;
+
+  // Scroll to top when screen gains focus
+  useFocusEffect(
+    useCallback(() => {
+      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+    }, [])
+  );
 
   const updateCalculationData = (updates: Partial<CalculationData>) => {
     setCalculationData((prev) => ({ ...prev, ...updates }));
@@ -100,6 +109,10 @@ export default function CalculateScreen() {
             onBack={goToPreviousStep}
             onComplete={resetCalculation}
             calculationData={calculationData}
+            onScrollToResult={() => {
+              // Scroll to the bottom of the content to show the result
+              scrollViewRef.current?.scrollToEnd({ animated: true });
+            }}
           />
         );
       default:
@@ -114,7 +127,7 @@ export default function CalculateScreen() {
         <StepIndicator currentStep={currentStep} totalSteps={totalSteps} />
       </View>
 
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView ref={scrollViewRef} style={styles.content} showsVerticalScrollIndicator={false}>
         {renderStep()}
       </ScrollView>
     </SafeAreaView>

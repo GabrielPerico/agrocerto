@@ -11,6 +11,7 @@ interface FinalMeasurementProps {
   onBack: () => void;
   onComplete: () => void;
   calculationData: CalculationData;
+  onScrollToResult?: () => void;
 }
 
 export default function FinalMeasurement({
@@ -20,6 +21,7 @@ export default function FinalMeasurement({
   onBack,
   onComplete,
   calculationData,
+  onScrollToResult,
 }: FinalMeasurementProps) {
   const [value, setValue] = useState(measurementValue?.toString() || '');
   const [error, setError] = useState('');
@@ -61,6 +63,11 @@ export default function FinalMeasurement({
       setResult(calculatedResult);
       onValueSet(valueNum);
       setIsCalculating(false);
+
+      // Scroll to result after a short delay to ensure the result section is rendered
+      setTimeout(() => {
+        onScrollToResult?.();
+      }, 200);
     }, 150);
   };
 

@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useRef, useCallback } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useFocusEffect } from '@react-navigation/native';
 import { Info, Calculator, Droplets, Gauge, Target } from 'lucide-react-native';
 
 export default function InformationScreen() {
+  const scrollViewRef = useRef<ScrollView>(null);
+
+  // Scroll to top when screen gains focus
+  useFocusEffect(
+    useCallback(() => {
+      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
+    }, [])
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -11,7 +21,7 @@ export default function InformationScreen() {
         <Text style={styles.headerSubtitle}>Aprenda como usar o Agrocerto de forma eficaz</Text>
       </View>
 
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView ref={scrollViewRef} style={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Calculator size={24} color="#22C55E" />
