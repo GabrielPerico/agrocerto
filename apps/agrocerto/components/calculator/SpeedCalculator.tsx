@@ -215,7 +215,7 @@ export default function SpeedCalculator({
                       maximumFractionDigits: 2,
                       minimumFractionDigits: 2,
                     })}{' '}
-                    m/s
+                    km/h
                   </Text>
                 </View>
                 <TouchableOpacity
@@ -238,7 +238,7 @@ export default function SpeedCalculator({
               maximumFractionDigits: 2,
               minimumFractionDigits: 2,
             })}{' '}
-            m/s
+            km/h
           </Text>
         </View>
       )}

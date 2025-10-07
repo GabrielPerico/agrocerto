@@ -111,7 +111,7 @@ export default function DataScreen() {
                   <Gauge size={18} color="#22C55E" />
                   <Text style={styles.dataLabel}>Velocidade</Text>
                   <Text style={styles.dataValue}>
-                    {calculation.averageSpeed.toLocaleString()} m/s
+                    {calculation.averageSpeed.toLocaleString()} km/h
                   </Text>
                 </View>
                 <View style={styles.dataItem}>

@@ -16,7 +16,7 @@ export interface SavedTime {
 export interface CalculationData {
   sprayerType: SprayerType | null;
   calculationMethod: CalculationMethod | null;
-  averageSpeed: number | null; // m/s
+  averageSpeed: number | null; // km/h
   nozzleDistance: number | null; // cm
   measurementValue: number | null; // L/min or mL depending on method
   savedTimes: SavedTime[];

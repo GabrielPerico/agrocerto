@@ -147,7 +147,7 @@ export default function FinalMeasurement({
         <View style={styles.summaryRow}>
           <Text style={styles.summaryLabel}>Velocidade Média:</Text>
           <Text style={styles.summaryValue}>
-            {calculationData.averageSpeed?.toLocaleString()} m/s
+            {calculationData.averageSpeed?.toLocaleString()} km/h
           </Text>
         </View>
         <View style={styles.summaryRow}>
