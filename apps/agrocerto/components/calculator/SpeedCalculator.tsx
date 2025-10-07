@@ -38,8 +38,8 @@ export default function SpeedCalculator({
 
   const calculateAverageSpeed = (times = savedTimes) => {
     if (times.length > 0) {
-      const speeds = times.map((t) => t.distance / (t.time / 100));
-      const avgSpeed = speeds.reduce((sum, speed) => sum + speed, 0) / speeds.length;
+      const speeds = times.map((t) => t.distance / (t.time / 1000));
+      const avgSpeed = (speeds.reduce((sum, speed) => sum + speed, 0) / speeds.length) * 3.6;
       onSpeedCalculated(Number(avgSpeed.toFixed(2)));
     } else {
       onSpeedCalculated(null);
