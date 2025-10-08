@@ -28,6 +28,8 @@ export default function SpeedCalculator({
   onNext,
   onBack,
 }: SpeedCalculatorProps) {
+  const multiplierToConvertMStoKMH = 3.6;
+
   const [distance, setDistance] = useState('50');
   const [isRunning, setIsRunning] = useState(false);
   const [time, setTime] = useState(0);
@@ -49,7 +51,7 @@ export default function SpeedCalculator({
 
     if (times.length > 0) {
       const speeds = times.map((t) => t.distance / (t.time / 1000));
-      const avgSpeed = (speeds.reduce((sum, speed) => sum + speed, 0) / speeds.length) * 3.6;
+      const avgSpeed = (speeds.reduce((sum, speed) => sum + speed, 0) / speeds.length) * multiplierToConvertMStoKMH;
       onSpeedCalculated(Number(avgSpeed.toFixed(2)));
     } else {
       onSpeedCalculated(null);
@@ -254,7 +256,7 @@ export default function SpeedCalculator({
                   <Text style={styles.timeDistance}>{savedTime.distance}m</Text>
                   <Text style={styles.timeValue}>{formatTime(savedTime.time)}</Text>
                   <Text style={styles.timeSpeed}>
-                    {(savedTime.distance / (savedTime.time / 100)).toLocaleString(undefined, {
+                    {(savedTime.distance / (savedTime.time / 1000) * multiplierToConvertMStoKMH).toLocaleString(undefined, {
                       maximumFractionDigits: 2,
                       minimumFractionDigits: 2,
                     })}{' '}
