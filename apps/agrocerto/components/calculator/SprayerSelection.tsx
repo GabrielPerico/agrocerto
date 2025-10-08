@@ -40,7 +40,6 @@ export default function SprayerSelection({ selectedSprayer, onSelect }: SprayerS
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tipo de Pulverizador</Text>
-      <Text style={styles.subtitle}>Escolha o tipo de pulverizador usado</Text>
 
       <View style={styles.optionsContainer}>
         {sprayerOptions.map((option) => (
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
     color: '#1E293B',
-    marginBottom: 8,
+    marginBottom: 32,
     textAlign: 'center',
   },
   subtitle: {

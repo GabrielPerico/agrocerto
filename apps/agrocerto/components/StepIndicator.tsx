@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Check } from 'lucide-react-native';
+import { View, StyleSheet } from 'react-native';
 
 interface StepIndicatorProps {
   currentStep: number;
@@ -12,38 +11,21 @@ export default function StepIndicator({ currentStep, totalSteps }: StepIndicator
     <View style={styles.container}>
       {Array.from({ length: totalSteps }, (_, index) => {
         const stepNumber = index + 1;
-        const isActive = stepNumber === currentStep;
         const isCompleted = stepNumber < currentStep;
+        const isActive = stepNumber === currentStep;
 
         return (
-          <React.Fragment key={stepNumber}>
-            <View
-              style={[
-                styles.step,
-                isActive && styles.activeStep,
-                isCompleted && styles.completedStep,
-              ]}
-            >
-              {isCompleted ? (
-                <Check size={16} color="#FFFFFF" />
-              ) : (
-                <Text
-                  style={[
-                    styles.stepText,
-                    isActive && styles.activeStepText,
-                    isCompleted && styles.completedStepText,
-                  ]}
-                >
-                  {stepNumber}
-                </Text>
-              )}
-            </View>
-            {stepNumber < totalSteps && (
+          <View key={stepNumber} style={styles.stepContainer}>
+            <View style={styles.progressBar}>
               <View
-                style={[styles.connector, stepNumber < currentStep && styles.completedConnector]}
+                style={[
+                  styles.progressFill,
+                  isCompleted && styles.completedFill,
+                  isActive && styles.activeFill,
+                ]}
               />
-            )}
-          </React.Fragment>
+            </View>
+          </View>
         );
       })}
     </View>
@@ -55,43 +37,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 8,
   },
-  step: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: '#E2E8F0',
-    justifyContent: 'center',
+  stepContainer: {
+    flex: 1,
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#E2E8F0',
   },
-  activeStep: {
-    backgroundColor: '#22C55E',
-    borderColor: '#22C55E',
-  },
-  completedStep: {
-    backgroundColor: '#22C55E',
-    borderColor: '#22C55E',
-  },
-  stepText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#64748B',
-  },
-  activeStepText: {
-    color: '#FFFFFF',
-  },
-  completedStepText: {
-    color: '#FFFFFF',
-  },
-  connector: {
-    width: 24,
-    height: 2,
+  progressBar: {
+    width: '100%',
+    height: 4,
     backgroundColor: '#E2E8F0',
-    marginHorizontal: 4,
+    borderRadius: 2,
+    overflow: 'hidden',
   },
-  completedConnector: {
+  progressFill: {
+    height: '100%',
+    width: '0%',
+    backgroundColor: '#E2E8F0',
+    borderRadius: 2,
+  },
+  completedFill: {
+    width: '100%',
+    backgroundColor: '#22C55E',
+  },
+  activeFill: {
+    width: '100%',
     backgroundColor: '#22C55E',
   },
 });

@@ -133,9 +133,7 @@ export default function FinalMeasurement({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.iconContainer}>{getIcon()}</View>
         <Text style={styles.title}>Medição Final</Text>
-        <Text style={styles.subtitle}>Insira a medição para concluir o cálculo</Text>
       </View>
 
       <View style={styles.summarySection}>
@@ -225,7 +223,7 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: 16,
   },
   iconContainer: {
     width: 64,

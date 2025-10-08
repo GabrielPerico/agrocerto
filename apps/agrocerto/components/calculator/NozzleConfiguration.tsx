@@ -47,11 +47,7 @@ export default function NozzleConfiguration({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.iconContainer}>
-          <Settings size={32} color="#22C55E" />
-        </View>
         <Text style={styles.title}>Configuração do Bico</Text>
-        <Text style={styles.subtitle}>Insira a distância entre os bicos do pulverizador</Text>
       </View>
 
       <View style={styles.inputSection}>
@@ -113,7 +109,7 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: 16,
   },
   iconContainer: {
     width: 64,

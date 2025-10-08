@@ -19,7 +19,6 @@ export default function CalculationType({
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Método de Cálculo</Text>
-      <Text style={styles.subtitle}>Escolha o método de cálculo desejado</Text>
 
       <View style={styles.methodsContainer}>
         <TouchableOpacity
@@ -37,7 +36,7 @@ export default function CalculationType({
               selectedMethod === 'desired_flow' && styles.selectedMethodTitle,
             ]}
           >
-            Vazão Desejada
+            Vazão Desejada (L/ha)
           </Text>
           <Text
             style={[
@@ -67,7 +66,7 @@ export default function CalculationType({
               selectedMethod === 'volume_collect' && styles.selectedMethodTitle,
             ]}
           >
-            Volume a ser Coletado
+            Volume a ser Coletado (L/min)
           </Text>
           <Text
             style={[
@@ -109,14 +108,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
     color: '#1E293B',
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#64748B',
-    textAlign: 'center',
     marginBottom: 40,
+    textAlign: 'center',
   },
   methodsContainer: {
     gap: 20,
@@ -172,6 +165,7 @@ const styles = StyleSheet.create({
     opacity: 0.9,
   },
   buttonContainer: {
+    flex: 1,
     flexDirection: 'row',
     gap: 12,
     marginTop: 'auto',

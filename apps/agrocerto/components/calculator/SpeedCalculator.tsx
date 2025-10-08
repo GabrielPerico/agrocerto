@@ -32,17 +32,46 @@ export default function SpeedCalculator({
   const [isRunning, setIsRunning] = useState(false);
   const [time, setTime] = useState(0);
   const [error, setError] = useState('');
+  const [manualSpeed, setManualSpeed] = useState('');
+  const [useManualSpeed, setUseManualSpeed] = useState(false);
   const intervalRef = useRef<number | null>(null);
   const initialDateRef = useRef<Date | null>(null);
   const previousTimeRef = useRef<number>(0);
 
   const calculateAverageSpeed = (times = savedTimes) => {
+    if (useManualSpeed && manualSpeed.trim()) {
+      const speedNum = parseFloat(manualSpeed);
+      if (!isNaN(speedNum) && speedNum > 0) {
+        onSpeedCalculated(Number(speedNum.toFixed(2)));
+        return;
+      }
+    }
+
     if (times.length > 0) {
       const speeds = times.map((t) => t.distance / (t.time / 1000));
       const avgSpeed = (speeds.reduce((sum, speed) => sum + speed, 0) / speeds.length) * 3.6;
       onSpeedCalculated(Number(avgSpeed.toFixed(2)));
     } else {
       onSpeedCalculated(null);
+    }
+  };
+
+  const handleManualSpeedChange = (value: string) => {
+    setManualSpeed(value);
+    setError('');
+
+    if (value.trim()) {
+      const speedNum = parseFloat(value);
+      if (!isNaN(speedNum) && speedNum > 0) {
+        setUseManualSpeed(true);
+        onSpeedCalculated(Number(speedNum.toFixed(2)));
+      } else {
+        setUseManualSpeed(false);
+        calculateAverageSpeed();
+      }
+    } else {
+      setUseManualSpeed(false);
+      calculateAverageSpeed();
     }
   };
 
@@ -138,14 +167,11 @@ export default function SpeedCalculator({
     ]);
   };
 
-  const canProceed = savedTimes.length > 0 && averageSpeed !== null;
+  const canProceed = (savedTimes.length > 0 || useManualSpeed) && averageSpeed !== null;
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Calculadora de Velocidade Média</Text>
-      <Text style={styles.subtitle}>
-        Medir a sua velocidade de percurso sobre uma distância conhecida
-      </Text>
 
       <View style={styles.inputSection}>
         <Text style={styles.inputLabel}>Distância a percorrer (metros)</Text>
@@ -158,6 +184,23 @@ export default function SpeedCalculator({
           placeholderTextColor="#94A3B8"
         />
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
+      </View>
+
+      <View style={styles.inputSection}>
+        <Text style={styles.inputLabel}>Ou insira a velocidade manualmente (km/h)</Text>
+        <TextInput
+          style={styles.input}
+          value={manualSpeed}
+          onChangeText={handleManualSpeedChange}
+          placeholder="Insira a velocidade em km/h"
+          keyboardType="numeric"
+          placeholderTextColor="#94A3B8"
+        />
+        <Text style={styles.helpText}>
+          {useManualSpeed
+            ? '✓ Usando velocidade manual'
+            : 'Deixe vazio para calcular automaticamente'}
+        </Text>
       </View>
 
       <View style={styles.stopwatchSection}>
@@ -272,14 +315,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
     color: '#1E293B',
-    marginBottom: 8,
+    marginBottom: 32,
     textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
     color: '#64748B',
     textAlign: 'center',
-    marginBottom: 32,
   },
   inputSection: {
     marginBottom: 32,
@@ -307,6 +349,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#EF4444',
     marginTop: 4,
+  },
+  helpText: {
+    fontSize: 14,
+    color: '#64748B',
+    marginTop: 4,
+    fontStyle: 'italic',
   },
   stopwatchSection: {
     backgroundColor: '#FFFFFF',
