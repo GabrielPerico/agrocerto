@@ -36,7 +36,7 @@ export default function CalculationType({
               selectedMethod === 'desired_flow' && styles.selectedMethodTitle,
             ]}
           >
-            Vazão Desejada (L/ha)
+            Vazão desejada (L/ha)
           </Text>
           <Text
             style={[
@@ -44,7 +44,7 @@ export default function CalculationType({
               selectedMethod === 'desired_flow' && styles.selectedMethodDescription,
             ]}
           >
-            Cálcular o volume de vazão desejada
+            Calcule o volume de vazão desejada
           </Text>
         </TouchableOpacity>
 
@@ -66,7 +66,7 @@ export default function CalculationType({
               selectedMethod === 'volume_collect' && styles.selectedMethodTitle,
             ]}
           >
-            Volume a ser Coletado (L/min)
+            Volume a ser coletado (L/min)
           </Text>
           <Text
             style={[
@@ -74,7 +74,7 @@ export default function CalculationType({
               selectedMethod === 'volume_collect' && styles.selectedMethodDescription,
             ]}
           >
-            Determine a vazão da coleta de volume em 1 minuto
+            Determine o volume a ser coletado por ponta em 1 minuto
           </Text>
         </TouchableOpacity>
       </View>
