@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import { Info, Calculator, Droplets, Gauge, Target } from 'lucide-react-native';
+import { Link } from '@/.expo/types/router';
 
 export default function InformationScreen() {
   const scrollViewRef = useRef<ScrollView>(null);
@@ -121,6 +122,13 @@ export default function InformationScreen() {
               (Velocidade × Distância entre os bicos × Taxa de aplicação) / 600
             </Text>
           </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Avalie a nossa aplicação</Text>
+          <Link href="https://docs.google.com/forms/d/132blqQ4me_UIXspU_Et3GU_oUcUO7za2mq_xhz30O20">
+            <Text style={styles.sectionText}>Avaliar</Text>
+          </Link>
         </View>
       </ScrollView>
     </SafeAreaView>
