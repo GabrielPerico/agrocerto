@@ -39,7 +39,7 @@ const sprayerOptions: { type: SprayerType; icon: React.ReactNode; description: s
 export default function SprayerSelection({ selectedSprayer, onSelect }: SprayerSelectionProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tipo de Pulverizador</Text>
+      <Text style={styles.title}>Selecionar o tipo de pulverizador</Text>
 
       <View style={styles.optionsContainer}>
         {sprayerOptions.map((option) => (
