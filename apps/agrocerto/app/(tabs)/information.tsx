@@ -46,6 +46,9 @@ export default function InformationScreen() {
               áreas
             </Text>
             <Text style={styles.sprayerItem}>
+              • <Text style={styles.bold}>Drone:</Text> Aplicação aérea precisa e eficiente
+            </Text>
+            <Text style={styles.sprayerItem}>
               • <Text style={styles.bold}>Atomizador (canhão de ar):</Text> Atomização de alta
               pressão
             </Text>

@@ -15,6 +15,11 @@ const sprayerOptions: { type: SprayerType; icon: React.ReactNode; description: s
     description: 'Cobertura ampla para grandes áreas',
   },
   {
+    type: 'Drone',
+    icon: <Droplets size={24} color="#3B82F6" />,
+    description: 'Aplicação aérea precisa e eficiente',
+  },
+  {
     type: 'Atomizador (canhão de ar)',
     icon: <Wind size={24} color="#0EA5E9" />,
     description: 'Atomização de alta pressão',

@@ -1,5 +1,6 @@
 export type SprayerType =
   | 'Pulverizador de Barra'
+  | 'Drone'
   | 'Atomizador (canhão de ar)'
   | 'Turbo Atomizador'
   | 'Pulverizador Costal Manual'
