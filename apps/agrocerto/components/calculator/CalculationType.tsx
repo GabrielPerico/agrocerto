@@ -18,7 +18,7 @@ export default function CalculationType({
 }: CalculationTypeProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Método de Cálculo</Text>
+      <Text style={styles.title}>Método de cálculo</Text>
 
       <View style={styles.methodsContainer}>
         <TouchableOpacity
@@ -36,7 +36,7 @@ export default function CalculationType({
               selectedMethod === 'desired_flow' && styles.selectedMethodTitle,
             ]}
           >
-            Vazão desejada (L/ha)
+            Volume de pulverização (L/ha)
           </Text>
           <Text
             style={[
@@ -44,7 +44,7 @@ export default function CalculationType({
               selectedMethod === 'desired_flow' && styles.selectedMethodDescription,
             ]}
           >
-            Calcule o volume de vazão desejada
+            Calcule a vazão desejada
           </Text>
         </TouchableOpacity>
 
@@ -66,7 +66,7 @@ export default function CalculationType({
               selectedMethod === 'volume_collect' && styles.selectedMethodTitle,
             ]}
           >
-            Volume a ser coletado (L/min)
+            Volume coletado no bico (L/min)
           </Text>
           <Text
             style={[
