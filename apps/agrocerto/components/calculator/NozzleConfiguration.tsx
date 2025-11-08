@@ -77,7 +77,7 @@ export default function NozzleConfiguration({
             • Utilize uma régua ou trena de medição para obter uma precisão maior
           </Text>
           <Text style={styles.helpText}>
-            • As distâncias normais entre os bicos variam de 20-100 cm
+            • As distâncias normais entre os bicos variam entre 25, 40 e 50cm
           </Text>
         </View>
       </View>
