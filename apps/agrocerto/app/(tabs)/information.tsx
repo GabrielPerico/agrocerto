@@ -38,7 +38,7 @@ export default function InformationScreen() {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Target size={24} color="#0EA5E9" />
-            <Text style={styles.sectionTitle}>Tipos de Pulverizador</Text>
+            <Text style={styles.sectionTitle}>Tipos de pulverizador</Text>
           </View>
           <View style={styles.sprayerList}>
             <Text style={styles.sprayerItem}>
@@ -70,14 +70,14 @@ export default function InformationScreen() {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Droplets size={24} color="#8B5CF6" />
-            <Text style={styles.sectionTitle}>Métodos de Cálculo</Text>
+            <Text style={styles.sectionTitle}>Métodos de cálculo</Text>
           </View>
           <Text style={styles.methodText}>
-            <Text style={styles.bold}>Vazão Desejada:</Text> Cálcula o volume a ser coletado com
+            <Text style={styles.bold}>Vazão desejada:</Text> Cálcula o volume a ser coletado com
             base na vazão desejada.
           </Text>
           <Text style={styles.methodText}>
-            <Text style={styles.bold}>Volume a Ser Coletado:</Text> Determina a vazão com base no
+            <Text style={styles.bold}>Volume a ser coletado:</Text> Determina a vazão com base no
             volume coletado em 1 minuto.
           </Text>
         </View>
@@ -85,7 +85,7 @@ export default function InformationScreen() {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Gauge size={24} color="#F59E0B" />
-            <Text style={styles.sectionTitle}>Dicas de Medição de Velocidade</Text>
+            <Text style={styles.sectionTitle}>Dicas de medição de velocidade</Text>
           </View>
           <View style={styles.tipsList}>
             <Text style={styles.tip}>
