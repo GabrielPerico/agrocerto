@@ -19,8 +19,14 @@ export default function NozzleConfiguration({
   const [error, setError] = useState('');
 
   const handleDistanceChange = (text: string) => {
-    setDistance(text);
-    setError('');
+    let formattedText = text.replace('.', ',');
+
+    const validDecimal = /^\d*(,\d*)?$/;
+
+    if (validDecimal.test(formattedText) || formattedText === '') {
+      setDistance(formattedText);
+      setError('');
+    }
   };
 
   const handleNext = () => {
@@ -29,13 +35,13 @@ export default function NozzleConfiguration({
       return;
     }
 
-    const distanceNum = parseFloat(distance);
+    const distanceNum = parseFloat(distance.replace(',', '.'));
     if (isNaN(distanceNum) || distanceNum <= 0) {
       setError('Por favor insira uma distância válida maior que 0');
       return;
     }
 
-    if (distanceNum > 1000) {
+    if (distanceNum > 500) {
       setError('A distância parece ser muito grande. Por favor verifique a distância informada');
       return;
     }
@@ -47,7 +53,7 @@ export default function NozzleConfiguration({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Configuração do Bico</Text>
+        <Text style={styles.title}>Configuração do bico</Text>
       </View>
 
       <View style={styles.inputSection}>
@@ -74,18 +80,6 @@ export default function NozzleConfiguration({
             • As distâncias normais entre os bicos variam de 20-100 cm
           </Text>
         </View>
-      </View>
-
-      <View style={styles.visualGuide}>
-        <Text style={styles.guideTitle}>Guia Visual</Text>
-        <View style={styles.nozzleRepresentation}>
-          <View style={styles.nozzle} />
-          <View style={styles.distanceLine} />
-          <Text style={styles.distanceLabel}>Distância</Text>
-          <View style={styles.distanceLine} />
-          <View style={styles.nozzle} />
-        </View>
-        <Text style={styles.guideDescription}>Tire a medida desta distância entre os bicos</Text>
       </View>
 
       <View style={styles.buttonContainer}>
@@ -188,18 +182,6 @@ const styles = StyleSheet.create({
     color: '#0369A1',
     lineHeight: 20,
     marginBottom: 4,
-  },
-  visualGuide: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 24,
-    alignItems: 'center',
-    marginBottom: 32,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
   },
   guideTitle: {
     fontSize: 18,

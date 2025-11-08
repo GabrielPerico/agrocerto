@@ -58,12 +58,18 @@ export default function SpeedCalculator({
     }
   };
 
-  const handleManualSpeedChange = (value: string) => {
-    setManualSpeed(value);
+   const handleManualSpeedChange = (value: string) => {
     setError('');
 
-    if (value.trim()) {
-      const speedNum = parseFloat(value);
+    const formattedText = value.replace('.', ',');
+
+    const validDecimal = /^\d*(,)?\d*$/;
+
+    if (validDecimal.test(formattedText) || formattedText === '') {
+      setManualSpeed(formattedText);
+
+      const speedNum = parseFloat(formattedText.replace(',', '.'));
+
       if (!isNaN(speedNum) && speedNum > 0) {
         setUseManualSpeed(true);
         onSpeedCalculated(Number(speedNum.toFixed(2)));
@@ -71,9 +77,6 @@ export default function SpeedCalculator({
         setUseManualSpeed(false);
         calculateAverageSpeed();
       }
-    } else {
-      setUseManualSpeed(false);
-      calculateAverageSpeed();
     }
   };
 
