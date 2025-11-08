@@ -29,7 +29,7 @@ export default function InformationScreen() {
             <Text style={styles.sectionTitle}>Como Usar a Calculadora</Text>
           </View>
           <Text style={styles.sectionText}>
-            O Agrocerto ajuda a determinar a velocidade média e as configurações de aplicação para o
+            O CalibraPlus ajuda a determinar a velocidade média e as configurações de aplicação para o
             seu equipamento de pulverizador. Siga o processo de 5 passos para obter cálculos
             precisos.
           </Text>
@@ -105,14 +105,14 @@ export default function InformationScreen() {
             <Text style={styles.sectionTitle}>Notas Importantes</Text>
           </View>
           <View style={styles.notesList}>
-            <Text style={styles.note}>• Sempre calibrar o pulverizador antes de usá-lo</Text>
+            <Text style={styles.note}>• Sempre calibre o pulverizador antes de utilizá-lo</Text>
             <Text style={styles.note}>• Verifique a condição do bico regularmente</Text>
             <Text style={styles.note}>
               • As condições meteorológicas afetam os padrões de pulverização
             </Text>
             <Text style={styles.note}>• Siga as recomendações do fabricante químico</Text>
             <Text style={styles.note}>
-              • Equipamentos de segurança apropriados devem ser usados
+              • Utilize equipamentos de segurança apropriados
             </Text>
           </View>
         </View>
@@ -148,7 +148,7 @@ export default function InformationScreen() {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Avalie a nossa aplicação</Text>
+          <Text style={styles.sectionTitle}>Avalie o nosso app</Text>
           <Link href="https://docs.google.com/forms/d/132blqQ4me_UIXspU_Et3GU_oUcUO7za2mq_xhz30O20">
             <Text style={styles.sectionText}>Avaliar</Text>
           </Link>

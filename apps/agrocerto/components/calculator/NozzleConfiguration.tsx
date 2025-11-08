@@ -71,10 +71,10 @@ export default function NozzleConfiguration({
         <View style={styles.helpSection}>
           <Text style={styles.helpTitle}>💡 Dicas para a medição</Text>
           <Text style={styles.helpText}>
-            • Medir a distância entre o centro e o centro dos bicos
+            • Medir a distância entre o centro de um bico até o centro do bico ao lado
           </Text>
           <Text style={styles.helpText}>
-            • Utilize uma régua ou trena de medição para obter uma precisão maior
+            • Utilize uma régua ou trena para maior precisão
           </Text>
           <Text style={styles.helpText}>
             • As distâncias normais entre os bicos variam entre 25, 40 e 50cm
