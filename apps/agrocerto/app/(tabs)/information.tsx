@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import { Info, Calculator, Droplets, Gauge, Target } from 'lucide-react-native';
-import { Link } from '@/.expo/types/router';
+import { Link } from 'expo-router';
 
 export default function InformationScreen() {
   const scrollViewRef = useRef<ScrollView>(null);
@@ -118,11 +118,31 @@ export default function InformationScreen() {
         </View>
 
         <View style={styles.formulaSection}>
-          <Text style={styles.formulaTitle}>Fórmula-chave</Text>
+          <Text style={styles.formulaTitle}>Fórmulas chave</Text>
           <View style={styles.formulaBox}>
-            <Text style={styles.formulaText}>Vazão (L/min) = </Text>
             <Text style={styles.formulaText}>
-              (Velocidade × Distância entre os bicos × Taxa de aplicação) / 600
+              Q = q x 60.000 / e x V
+            </Text>
+            <Text style={styles.explanationText}>
+              e
+            </Text>
+            <Text style={styles.formulaText}>
+              q = V x e x Q / 60.000
+            </Text>
+            <Text style={[styles.explanationText, { marginTop: 12 }]}>
+              Onde:
+            </Text>
+            <Text style={styles.explanationText}>
+              Q = volume de pulverização (L/ha)
+            </Text>
+            <Text style={styles.explanationText}>
+              q = vazão coletada da ponta (L/min)
+            </Text>
+            <Text style={styles.explanationText}>
+              e = espaçamento entre bicos (cm)
+            </Text>
+            <Text style={styles.explanationText}>
+              V = velocidade de deslocamento (km/h)
             </Text>
           </View>
         </View>
@@ -253,4 +273,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center',
   },
+  explanationText: {
+    fontSize: 16,
+    color: '#475569',
+    fontWeight: '500',
+    textAlign: 'center',
+  }
 });
