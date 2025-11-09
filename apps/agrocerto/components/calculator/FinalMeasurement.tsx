@@ -123,11 +123,11 @@ export default function FinalMeasurement({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Medição Final</Text>
+        <Text style={styles.title}>Medição final</Text>
       </View>
 
       <View style={styles.summarySection}>
-        <Text style={styles.summaryTitle}>Resumo do Cálculo</Text>
+        <Text style={styles.summaryTitle}>Resumo do cálculo</Text>
         <View style={styles.summaryRow}>
           <Text style={styles.summaryLabel}>Tipo:</Text>
           <Text style={styles.summaryValue}>{calculationData.sprayerType}</Text>
