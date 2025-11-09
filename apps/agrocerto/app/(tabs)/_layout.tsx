@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { Calculator, Database, Info } from 'lucide-react-native';
+import { Calculator, Database, Home, Info } from 'lucide-react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function TabLayout() {
@@ -25,6 +25,13 @@ export default function TabLayout() {
         },
       }}
     >
+      <Tabs.Screen
+        name="home"
+        options={{
+          title: 'Início',
+          tabBarIcon: ({ size, color }) => <Home size={size} color={color} />,
+        }}
+      />
       <Tabs.Screen
         name="index"
         options={{
