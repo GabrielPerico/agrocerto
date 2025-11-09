@@ -19,7 +19,7 @@ export default function InformationScreen() {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Guias e Informações</Text>
-        <Text style={styles.headerSubtitle}>Aprenda como usar o Agrocerto de forma eficaz</Text>
+        <Text style={styles.headerSubtitle}>Aprenda como usar o CalibraPlus de forma eficaz</Text>
       </View>
 
       <ScrollView ref={scrollViewRef} style={styles.content} showsVerticalScrollIndicator={false}>
@@ -29,8 +29,8 @@ export default function InformationScreen() {
             <Text style={styles.sectionTitle}>Como Usar a Calculadora</Text>
           </View>
           <Text style={styles.sectionText}>
-            O CalibraPlus ajuda a determinar a velocidade média e as configurações de aplicação para o
-            seu equipamento de pulverizador. Siga o processo de 5 passos para obter cálculos
+            O CalibraPlus ajuda a determinar a velocidade média e as configurações de aplicação para
+            o seu equipamento de pulverizador. Siga o processo de 5 passos para obter cálculos
             precisos.
           </Text>
         </View>
@@ -111,39 +111,21 @@ export default function InformationScreen() {
               • As condições meteorológicas afetam os padrões de pulverização
             </Text>
             <Text style={styles.note}>• Siga as recomendações do fabricante químico</Text>
-            <Text style={styles.note}>
-              • Utilize equipamentos de segurança apropriados
-            </Text>
+            <Text style={styles.note}>• Utilize equipamentos de segurança apropriados</Text>
           </View>
         </View>
 
         <View style={styles.formulaSection}>
           <Text style={styles.formulaTitle}>Fórmulas chave</Text>
           <View style={styles.formulaBox}>
-            <Text style={styles.formulaText}>
-              Q = q x 60.000 / e x V
-            </Text>
-            <Text style={styles.explanationText}>
-              e
-            </Text>
-            <Text style={styles.formulaText}>
-              q = V x e x Q / 60.000
-            </Text>
-            <Text style={[styles.explanationText, { marginTop: 12 }]}>
-              Onde:
-            </Text>
-            <Text style={styles.explanationText}>
-              Q = volume de pulverização (L/ha)
-            </Text>
-            <Text style={styles.explanationText}>
-              q = vazão coletada da ponta (L/min)
-            </Text>
-            <Text style={styles.explanationText}>
-              e = espaçamento entre bicos (cm)
-            </Text>
-            <Text style={styles.explanationText}>
-              V = velocidade de deslocamento (km/h)
-            </Text>
+            <Text style={styles.formulaText}>Q = q x 60.000 / e x V</Text>
+            <Text style={styles.explanationText}>e</Text>
+            <Text style={styles.formulaText}>q = V x e x Q / 60.000</Text>
+            <Text style={[styles.explanationText, { marginTop: 12 }]}>Onde:</Text>
+            <Text style={styles.explanationText}>Q = volume de pulverização (L/ha)</Text>
+            <Text style={styles.explanationText}>q = vazão coletada da ponta (L/min)</Text>
+            <Text style={styles.explanationText}>e = espaçamento entre bicos (cm)</Text>
+            <Text style={styles.explanationText}>V = velocidade de deslocamento (km/h)</Text>
           </View>
         </View>
 
@@ -278,5 +260,5 @@ const styles = StyleSheet.create({
     color: '#475569',
     fontWeight: '500',
     textAlign: 'center',
-  }
+  },
 });
