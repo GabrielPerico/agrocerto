@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Text,
@@ -34,8 +34,8 @@ export default function SpeedCalculator({
   const [isRunning, setIsRunning] = useState(false);
   const [time, setTime] = useState(0);
   const [error, setError] = useState('');
-  const [manualSpeed, setManualSpeed] = useState('');
-  const [useManualSpeed, setUseManualSpeed] = useState(false);
+  const [manualSpeed, setManualSpeed] = useState(averageSpeed?.toString() || '');
+  const [useManualSpeed, setUseManualSpeed] = useState(!!averageSpeed || false);
   const intervalRef = useRef<number | null>(null);
   const initialDateRef = useRef<Date | null>(null);
   const previousTimeRef = useRef<number>(0);
@@ -153,14 +153,12 @@ export default function SpeedCalculator({
     onTimesUpdated(updatedTimes);
     calculateAverageSpeed(updatedTimes);
 
-    // Reset for next measurement
     resetStopwatch();
-    setDistance('50');
     setError('');
   };
 
   const deleteTime = (id: string) => {
-    Alert.alert('Remover Tempo', 'Tem certeza de que deseja remover este tempo?', [
+    Alert.alert('Remover tempo', 'Tem certeza de que deseja remover este tempo?', [
       { text: 'Cancelar', style: 'cancel' },
       {
         text: 'Deletar',
@@ -253,7 +251,7 @@ export default function SpeedCalculator({
 
       {savedTimes.length > 0 && (
         <View style={styles.savedTimesSection}>
-          <Text style={styles.sectionTitle}>Tempos Registrados</Text>
+          <Text style={styles.sectionTitle}>Tempos registrados</Text>
           <ScrollView style={styles.timesList} showsVerticalScrollIndicator={false}>
             {savedTimes.map((savedTime) => (
               <View key={savedTime.id} style={styles.timeItem}>

@@ -65,9 +65,9 @@ export default function DataScreen() {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.centerContent}>
-          <Text style={styles.emptyTitle}>Nenhum Cálculo Salvo</Text>
+          <Text style={styles.emptyTitle}>Nenhum cálculo salvo</Text>
           <Text style={styles.emptyDescription}>
-            Complete os cálculos na aba Cálculo para ver os cálculos salvos.
+            Complete os cálculos na aba "Cálculo" para ver os cálculos salvos.
           </Text>
         </View>
       </SafeAreaView>
@@ -77,7 +77,7 @@ export default function DataScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Cálculos Salvos</Text>
+        <Text style={styles.headerTitle}>Cálculos salvos</Text>
         <Text style={styles.headerSubtitle}>{savedCalculations.length} cálculos salvos</Text>
       </View>
 
@@ -116,9 +116,10 @@ export default function DataScreen() {
                 </View>
                 <View style={styles.dataItem}>
                   <Droplets size={18} color="#0EA5E9" />
-                  <Text style={styles.dataLabel}>Vazão</Text>
+                  <Text style={styles.dataLabel}>Volume</Text>
                   <Text style={styles.dataValue}>
-                    {calculation.finalResult.toLocaleString()} L/min
+                    {calculation.finalResult.toLocaleString()}{' '}
+                    {calculation.calculationMethod === 'vazao_desejada' ? 'L/ha' : 'L/min'}
                   </Text>
                 </View>
               </View>
