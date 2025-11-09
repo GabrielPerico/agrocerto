@@ -6,12 +6,12 @@ export type SprayerType =
   | 'Pulverizador Costal Manual'
   | 'Pulverizador Costal Motorizado';
 
-export type CalculationMethod = 'desired_flow' | 'volume_collect';
+export type CalculationMethod = 'vazao_desejada' | 'volume_por_bico';
 
 export interface SavedTime {
   id: string;
-  time: number; // in seconds
-  distance: number; // in meters
+  time: number; // em segundos
+  distance: number; // em metros
 }
 
 export interface CalculationData {
@@ -19,7 +19,7 @@ export interface CalculationData {
   calculationMethod: CalculationMethod | null;
   averageSpeed: number | null; // km/h
   nozzleDistance: number | null; // cm
-  measurementValue: number | null; // L/min or mL depending on method
+  measurementValue: number | null; // L/min ou L/ha, dependendo do método
   savedTimes: SavedTime[];
 }
 

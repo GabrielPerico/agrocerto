@@ -22,18 +22,21 @@ export default function CalculationType({
 
       <View style={styles.methodsContainer}>
         <TouchableOpacity
-          style={[styles.methodCard, selectedMethod === 'desired_flow' && styles.selectedCard]}
-          onPress={() => onSelect('desired_flow')}
+          style={[styles.methodCard, selectedMethod === 'vazao_desejada' && styles.selectedCard]}
+          onPress={() => onSelect('vazao_desejada')}
         >
           <View
-            style={[styles.methodIcon, selectedMethod === 'desired_flow' && styles.selectedIcon]}
+            style={[styles.methodIcon, selectedMethod === 'vazao_desejada' && styles.selectedIcon]}
           >
-            <Droplets size={32} color={selectedMethod === 'desired_flow' ? '#FFFFFF' : '#22C55E'} />
+            <Droplets
+              size={32}
+              color={selectedMethod === 'vazao_desejada' ? '#FFFFFF' : '#22C55E'}
+            />
           </View>
           <Text
             style={[
               styles.methodTitle,
-              selectedMethod === 'desired_flow' && styles.selectedMethodTitle,
+              selectedMethod === 'vazao_desejada' && styles.selectedMethodTitle,
             ]}
           >
             Volume de pulverização (L/ha)
@@ -41,7 +44,7 @@ export default function CalculationType({
           <Text
             style={[
               styles.methodDescription,
-              selectedMethod === 'desired_flow' && styles.selectedMethodDescription,
+              selectedMethod === 'vazao_desejada' && styles.selectedMethodDescription,
             ]}
           >
             Calcule a vazão desejada
@@ -49,21 +52,21 @@ export default function CalculationType({
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.methodCard, selectedMethod === 'volume_collect' && styles.selectedCard]}
-          onPress={() => onSelect('volume_collect')}
+          style={[styles.methodCard, selectedMethod === 'volume_por_bico' && styles.selectedCard]}
+          onPress={() => onSelect('volume_por_bico')}
         >
           <View
-            style={[styles.methodIcon, selectedMethod === 'volume_collect' && styles.selectedIcon]}
+            style={[styles.methodIcon, selectedMethod === 'volume_por_bico' && styles.selectedIcon]}
           >
             <FlaskConical
               size={32}
-              color={selectedMethod === 'volume_collect' ? '#FFFFFF' : '#0EA5E9'}
+              color={selectedMethod === 'volume_por_bico' ? '#FFFFFF' : '#0EA5E9'}
             />
           </View>
           <Text
             style={[
               styles.methodTitle,
-              selectedMethod === 'volume_collect' && styles.selectedMethodTitle,
+              selectedMethod === 'volume_por_bico' && styles.selectedMethodTitle,
             ]}
           >
             Volume coletado no bico (L/min)
@@ -71,7 +74,7 @@ export default function CalculationType({
           <Text
             style={[
               styles.methodDescription,
-              selectedMethod === 'volume_collect' && styles.selectedMethodDescription,
+              selectedMethod === 'volume_por_bico' && styles.selectedMethodDescription,
             ]}
           >
             Determine o volume a ser coletado por ponta em 1 minuto

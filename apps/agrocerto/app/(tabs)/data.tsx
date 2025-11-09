@@ -126,9 +126,9 @@ export default function DataScreen() {
               <View style={styles.detailsRow}>
                 <Text style={styles.detailText}>
                   Método:{' '}
-                  {calculation.calculationMethod === 'desired_flow'
-                    ? 'Vazão Desejada'
-                    : 'Volume a Coletar'}
+                  {calculation.calculationMethod === 'vazao_desejada'
+                    ? 'Vazão desejada'
+                    : 'Volume a coletar por bico'}
                 </Text>
                 <Text style={styles.detailText}>
                   Distância entre bicos: {calculation.nozzleDistance} cm

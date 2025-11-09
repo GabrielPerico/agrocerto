@@ -23,48 +23,46 @@ export default function FinalMeasurement({
   calculationData,
   onScrollToResult,
 }: FinalMeasurementProps) {
-  const [value, setValue] = useState(measurementValue?.toString() || '');
+  const [valorInformado, setValorInformado] = useState(measurementValue?.toString() || '');
   const [error, setError] = useState('');
   const [isCalculating, setIsCalculating] = useState(false);
   const [result, setResult] = useState<number | null>(null);
 
   const handleValueChange = (text: string) => {
-    setValue(text);
+    setValorInformado(text);
     setError('');
     setResult(null);
   };
 
   const calculateResult = () => {
-    if (!value.trim()) {
+    if (!valorInformado.trim()) {
       setError('Por favor insira um valor de medição');
       return;
     }
 
-    const valueNum = parseFloat(value);
-    if (isNaN(valueNum) || valueNum <= 0) {
+    const valorNum = parseFloat(valorInformado.replace(',', '.'));
+    if (isNaN(valorNum) || valorNum <= 0) {
       setError('Por favor insira um valor válido maior que 0');
       return;
     }
 
     setIsCalculating(true);
 
-    // Simulate calculation time
     setTimeout(() => {
       let calculatedResult: number;
 
-      if (calculationMethod === 'desired_flow') {
-        // Value is desired flow rate in L/min, calculate volume to collect
-        calculatedResult = (valueNum * calculationData.nozzleDistance!) / 100;
+      if (calculationMethod === 'vazao_desejada') {
+        calculatedResult =
+          (valorNum * 60000) / (calculationData.nozzleDistance! * calculationData.averageSpeed!);
       } else {
-        // Value is volume collected in mL, calculate flow rate
-        calculatedResult = (valueNum / 1000) * 60; // Convert mL to L/min
+        calculatedResult =
+          (valorNum * calculationData.nozzleDistance! * calculationData.averageSpeed!) / 60000;
       }
 
       setResult(calculatedResult);
-      onValueSet(valueNum);
+      onValueSet(valorNum);
       setIsCalculating(false);
 
-      // Scroll to result after a short delay to ensure the result section is rendered
       setTimeout(() => {
         onScrollToResult?.();
       }, 200);
@@ -81,7 +79,7 @@ export default function FinalMeasurement({
         calculationMethod: calculationMethod!,
         averageSpeed: calculationData.averageSpeed!,
         nozzleDistance: calculationData.nozzleDistance!,
-        measurementValue: parseFloat(value),
+        measurementValue: parseFloat(valorInformado),
         finalResult: result,
         createdAt: new Date().toISOString(),
       };
@@ -92,9 +90,9 @@ export default function FinalMeasurement({
 
       await AsyncStorage.setItem('savedCalculations', JSON.stringify(savedCalculations));
 
-      Alert.alert('Cálculo Salvo', 'Seu cálculo foi salvo com sucesso!', [
+      Alert.alert('Cálculo salvo', 'Seu cálculo foi salvo com sucesso!', [
         {
-          text: 'Iniciar Novo Cálculo',
+          text: 'Iniciar novo cálculo',
           onPress: onComplete,
         },
       ]);
@@ -105,29 +103,21 @@ export default function FinalMeasurement({
   };
 
   const getInputLabel = () => {
-    return calculationMethod === 'desired_flow'
-      ? 'Vazão Desejada (L/min)'
-      : 'Volume Coletado em 1 minuto (mL)';
+    return calculationMethod === 'vazao_desejada'
+      ? 'Vazão do bico (L/min)'
+      : 'Volume de pulverização (L/ha)';
   };
 
   const getInputPlaceholder = () => {
-    return calculationMethod === 'desired_flow'
-      ? 'Insira a vazão desejada'
-      : 'Insira o volume coletado';
+    return calculationMethod === 'vazao_desejada'
+      ? 'Insira o volume coletado por bico'
+      : 'Insira o volume de pulverização';
   };
 
   const getResultLabel = () => {
-    return calculationMethod === 'desired_flow'
-      ? 'Volume a ser Coletado por Bico (mL)'
-      : 'Vazão Calculado (L/min)';
-  };
-
-  const getIcon = () => {
-    return calculationMethod === 'desired_flow' ? (
-      <Droplets size={32} color="#22C55E" />
-    ) : (
-      <FlaskConical size={32} color="#0EA5E9" />
-    );
+    return calculationMethod === 'vazao_desejada'
+      ? 'Volume de pulverização'
+      : 'Volume a ser coletado por bico';
   };
 
   return (
@@ -160,7 +150,7 @@ export default function FinalMeasurement({
         <Text style={styles.inputLabel}>{getInputLabel()}</Text>
         <TextInput
           style={[styles.input, error && styles.inputError]}
-          value={value}
+          value={valorInformado}
           onChangeText={handleValueChange}
           placeholder={getInputPlaceholder()}
           keyboardType="numeric"
@@ -186,22 +176,22 @@ export default function FinalMeasurement({
         <View style={styles.resultSection}>
           <View style={styles.resultHeader}>
             <CheckCircle size={24} color="#22C55E" />
-            <Text style={styles.resultTitle}>Cálculo Concluído</Text>
+            <Text style={styles.resultTitle}>Cálculo concluído</Text>
           </View>
 
           <View style={styles.resultCard}>
             <Text style={styles.resultLabel}>{getResultLabel()}</Text>
             <Text style={styles.resultValue}>
               {result.toLocaleString(undefined, {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
+                maximumFractionDigits: 3,
+                minimumFractionDigits: 3,
               })}{' '}
-              {calculationMethod === 'desired_flow' ? 'mL' : 'L/min'}
+              {calculationMethod === 'vazao_desejada' ? 'L/ha' : 'L/min'}
             </Text>
           </View>
 
           <TouchableOpacity style={styles.saveButton} onPress={saveCalculation}>
-            <Text style={styles.saveButtonText}>Salvar e Iniciar Novo Cálculo</Text>
+            <Text style={styles.saveButtonText}>Salvar e iniciar novo cálculo</Text>
           </TouchableOpacity>
         </View>
       )}
