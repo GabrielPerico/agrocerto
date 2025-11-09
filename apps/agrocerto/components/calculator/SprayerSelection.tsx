@@ -1,7 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SprayerType } from '@/types/calculator';
-import { Droplets, Wind, Zap, User, Settings } from 'lucide-react-native';
+import {
+  PulverizadorBarraIcon,
+  DroneIcon,
+  AtomizadorIcon,
+  TurboAtomizadorIcon,
+  CostalManualIcon,
+  CostalMotorizadoIcon,
+} from '../icons/CustomIcon';
 
 interface SprayerSelectionProps {
   selectedSprayer: SprayerType | null;
@@ -11,32 +18,32 @@ interface SprayerSelectionProps {
 const sprayerOptions: { type: SprayerType; icon: React.ReactNode; description: string }[] = [
   {
     type: 'Pulverizador de Barra',
-    icon: <Settings size={24} color="#22C55E" />,
+    icon: <PulverizadorBarraIcon />,
     description: 'Cobertura ampla para grandes áreas',
   },
   {
     type: 'Drone',
-    icon: <Droplets size={24} color="#3B82F6" />,
+    icon: <DroneIcon />,
     description: 'Aplicação aérea precisa e eficiente',
   },
   {
     type: 'Atomizador (canhão de ar)',
-    icon: <Wind size={24} color="#0EA5E9" />,
+    icon: <AtomizadorIcon />,
     description: 'Atomização de alta pressão',
   },
   {
     type: 'Turbo Atomizador',
-    icon: <Zap size={24} color="#8B5CF6" />,
+    icon: <TurboAtomizadorIcon />,
     description: 'Pulverização dirigida a pomares e cultivos densos',
   },
   {
     type: 'Pulverizador Costal Manual',
-    icon: <User size={24} color="#F59E0B" />,
+    icon: <CostalManualIcon />,
     description: 'Pulverização para pequenas aplicações',
   },
   {
     type: 'Pulverizador Costal Motorizado',
-    icon: <Droplets size={24} color="#EF4444" />,
+    icon: <CostalMotorizadoIcon />,
     description: 'Potente e prático para áreas maiores',
   },
 ];
