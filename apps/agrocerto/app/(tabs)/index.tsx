@@ -8,7 +8,8 @@ import CalculationType from '@/components/calculator/CalculationType';
 import SpeedCalculator from '@/components/calculator/SpeedCalculator';
 import NozzleConfiguration from '@/components/calculator/NozzleConfiguration';
 import FinalMeasurement from '@/components/calculator/FinalMeasurement';
-import { CalculationData } from '@/types/calculator';
+import EmBreve from '@/components/EmBreve';
+import { CalculationData, SprayerType } from '@/types/calculator';
 
 export default function CalculateScreen() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -24,7 +25,6 @@ export default function CalculateScreen() {
 
   const totalSteps = 5;
 
-  // Scroll to top when screen gains focus
   useFocusEffect(
     useCallback(() => {
       scrollViewRef.current?.scrollTo({ y: 0, animated: false });
@@ -35,8 +35,10 @@ export default function CalculateScreen() {
     setCalculationData((prev) => ({ ...prev, ...updates }));
   };
 
-  const goToNextStep = () => {
-    if (currentStep < totalSteps) {
+  const goToNextStep = (sprayer?: SprayerType) => {
+    if (!!sprayer && sprayer !== 'Pulverizador de Barra') {
+      setCurrentStep(6);
+    } else if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -67,7 +69,7 @@ export default function CalculateScreen() {
             selectedSprayer={calculationData.sprayerType}
             onSelect={(sprayer) => {
               updateCalculationData({ sprayerType: sprayer });
-              goToNextStep();
+              goToNextStep(sprayer);
             }}
           />
         );
@@ -112,6 +114,14 @@ export default function CalculateScreen() {
             onScrollToResult={() => {
               // Scroll to the bottom of the content to show the result
               scrollViewRef.current?.scrollToEnd({ animated: true });
+            }}
+          />
+        );
+      case 6:
+        return (
+          <EmBreve
+            onBack={() => {
+              setCurrentStep(1);
             }}
           />
         );

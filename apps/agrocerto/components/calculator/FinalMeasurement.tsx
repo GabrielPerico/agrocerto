@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
-import { ArrowLeft, CircleCheck as CheckCircle, Droplets, FlaskConical } from 'lucide-react-native';
+import { ArrowLeft, CircleCheck as CheckCircle } from 'lucide-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CalculationMethod, CalculationData, SavedCalculation } from '@/types/calculator';
 
