@@ -51,14 +51,16 @@ export default function SpeedCalculator({
 
     if (times.length > 0) {
       const speeds = times.map((t) => t.distance / (t.time / 1000));
-      const avgSpeed = (speeds.reduce((sum, speed) => sum + speed, 0) / speeds.length) * multiplierToConvertMStoKMH;
+      const avgSpeed =
+        (speeds.reduce((sum, speed) => sum + speed, 0) / speeds.length) *
+        multiplierToConvertMStoKMH;
       onSpeedCalculated(Number(avgSpeed.toFixed(2)));
     } else {
       onSpeedCalculated(null);
     }
   };
 
-   const handleManualSpeedChange = (value: string) => {
+  const handleManualSpeedChange = (value: string) => {
     setError('');
 
     const formattedText = value.replace('.', ',');
@@ -176,7 +178,7 @@ export default function SpeedCalculator({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Calculadora de Velocidade Média</Text>
+      <Text style={styles.title}>Calculadora de velocidade média</Text>
 
       <View style={styles.inputSection}>
         <Text style={styles.inputLabel}>Distância a percorrer (metros)</Text>
@@ -259,7 +261,10 @@ export default function SpeedCalculator({
                   <Text style={styles.timeDistance}>{savedTime.distance}m</Text>
                   <Text style={styles.timeValue}>{formatTime(savedTime.time)}</Text>
                   <Text style={styles.timeSpeed}>
-                    {(savedTime.distance / (savedTime.time / 1000) * multiplierToConvertMStoKMH).toLocaleString(undefined, {
+                    {(
+                      (savedTime.distance / (savedTime.time / 1000)) *
+                      multiplierToConvertMStoKMH
+                    ).toLocaleString(undefined, {
                       maximumFractionDigits: 2,
                       minimumFractionDigits: 2,
                     })}{' '}
