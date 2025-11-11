@@ -60,25 +60,27 @@ export default function SprayerSelection({ selectedSprayer, onSelect }: SprayerS
             style={[styles.optionCard, selectedSprayer === option.type && styles.selectedCard]}
             onPress={() => onSelect(option.type)}
           >
-            <View style={styles.optionHeader}>
+            <View style={styles.optionContainer}>
               {option.icon}
-              <Text
-                style={[
-                  styles.optionTitle,
-                  selectedSprayer === option.type && styles.selectedOptionTitle,
-                ]}
-              >
-                {option.type}
-              </Text>
+              <View>
+                <Text
+                  style={[
+                    styles.optionTitle,
+                    selectedSprayer === option.type && styles.selectedOptionTitle,
+                  ]}
+                >
+                  {option.type}
+                </Text>
+                <Text
+                  style={[
+                    styles.optionDescription,
+                    selectedSprayer === option.type && styles.selectedOptionDescription,
+                  ]}
+                >
+                  {option.description}
+                </Text>
+              </View>
             </View>
-            <Text
-              style={[
-                styles.optionDescription,
-                selectedSprayer === option.type && styles.selectedOptionDescription,
-              ]}
-            >
-              {option.description}
-            </Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -108,6 +110,11 @@ const styles = StyleSheet.create({
     gap: 12,
     marginBottom: 32,
   },
+  optionContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 18,
+  },
   optionCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
@@ -124,12 +131,6 @@ const styles = StyleSheet.create({
     borderColor: '#22C55E',
     backgroundColor: '#F0FDF4',
   },
-  optionHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    marginBottom: 8,
-  },
   optionTitle: {
     fontSize: 18,
     fontWeight: '600',
@@ -142,7 +143,6 @@ const styles = StyleSheet.create({
   optionDescription: {
     fontSize: 14,
     color: '#64748B',
-    marginLeft: 36,
   },
   selectedOptionDescription: {
     color: '#166534',
