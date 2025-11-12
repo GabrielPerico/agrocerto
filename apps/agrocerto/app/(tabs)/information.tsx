@@ -8,7 +8,6 @@ import { Link } from 'expo-router';
 export default function InformationScreen() {
   const scrollViewRef = useRef<ScrollView>(null);
 
-  // Scroll to top when screen gains focus
   useFocusEffect(
     useCallback(() => {
       scrollViewRef.current?.scrollTo({ y: 0, animated: false });
