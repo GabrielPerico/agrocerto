@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
-import { ArrowLeft, Settings } from 'lucide-react-native';
+import { ArrowLeft } from 'lucide-react-native';
 
 interface NozzleConfigurationProps {
   nozzleDistance: number | null;
@@ -73,9 +73,7 @@ export default function NozzleConfiguration({
           <Text style={styles.helpText}>
             • Medir a distância entre o centro de um bico até o centro do bico ao lado
           </Text>
-          <Text style={styles.helpText}>
-            • Utilize uma régua ou trena para maior precisão
-          </Text>
+          <Text style={styles.helpText}>• Utilize uma régua ou trena para maior precisão</Text>
           <Text style={styles.helpText}>
             • As distâncias normais entre os bicos variam entre 25, 40 e 50cm
           </Text>

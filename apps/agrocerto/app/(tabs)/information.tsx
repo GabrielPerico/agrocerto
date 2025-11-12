@@ -26,7 +26,7 @@ export default function InformationScreen() {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Calculator size={24} color="#22C55E" />
-            <Text style={styles.sectionTitle}>Como Usar a Calculadora</Text>
+            <Text style={styles.sectionTitle}>Calibrador CalibraPlus</Text>
           </View>
           <Text style={styles.sectionText}>
             O CalibraPlus ajuda a determinar a velocidade média e as configurações de aplicação para
@@ -42,7 +42,7 @@ export default function InformationScreen() {
           </View>
           <View style={styles.sprayerList}>
             <Text style={styles.sprayerItem}>
-              • <Text style={styles.bold}>Pulverizador de Barra:</Text> Cobertura ampla para grandes
+              • <Text style={styles.bold}>Pulverizador de barra:</Text> Cobertura ampla para grandes
               áreas
             </Text>
             <Text style={styles.sprayerItem}>
@@ -53,15 +53,15 @@ export default function InformationScreen() {
               pressão
             </Text>
             <Text style={styles.sprayerItem}>
-              • <Text style={styles.bold}>Turbo Atomizador:</Text> Pulverização dirigida a pomares e
+              • <Text style={styles.bold}>Turbo atomizador:</Text> Pulverização dirigida a pomares e
               cultivos densos
             </Text>
             <Text style={styles.sprayerItem}>
-              • <Text style={styles.bold}>Pulverizador Costal Manual:</Text> Pulverização para
+              • <Text style={styles.bold}>Pulverizador costal manual:</Text> Pulverização para
               pequenas aplicações
             </Text>
             <Text style={styles.sprayerItem}>
-              • <Text style={styles.bold}>Pulverizador Costal Motorizado:</Text> Potente e prático
+              • <Text style={styles.bold}>Pulverizador costal motorizado:</Text> Potente e prático
               para áreas maiores
             </Text>
           </View>
@@ -84,25 +84,8 @@ export default function InformationScreen() {
 
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Gauge size={24} color="#F59E0B" />
-            <Text style={styles.sectionTitle}>Dicas de medição de velocidade</Text>
-          </View>
-          <View style={styles.tipsList}>
-            <Text style={styles.tip}>
-              • Medir a velocidade em terreno similar às condições de pulverização reais
-            </Text>
-            <Text style={styles.tip}>• Faça múltiplas medições para obter uma precisão melhor</Text>
-            <Text style={styles.tip}>• Mantenha a velocidade consistente durante a condução</Text>
-            <Text style={styles.tip}>
-              • Utilize a funcionalidade do cronómetro para medir a distância percorrida
-            </Text>
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
             <Info size={24} color="#EF4444" />
-            <Text style={styles.sectionTitle}>Notas Importantes</Text>
+            <Text style={styles.sectionTitle}>Notas importantes</Text>
           </View>
           <View style={styles.notesList}>
             <Text style={styles.note}>• Sempre calibre o pulverizador antes de utilizá-lo</Text>

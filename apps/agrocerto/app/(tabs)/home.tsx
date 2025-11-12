@@ -1,54 +1,80 @@
 import { SafeAreaView, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { router } from 'expo-router';
+import { useState } from 'react';
+import DevelopersScreen from '@/components/home_subscreens/Developers';
+import UserManualScreen from '@/components/home_subscreens/UserManual';
 
 export default function HomeScreen() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
-        <Image source={require('../../assets/images/calibra-plus-logo.png')} style={styles.logo} />
+  const [currentScreen, setCurrentScreen] = useState('home');
 
-        <Text style={styles.version}>versão 0.0.1</Text>
+  const goToCalculatorScreen = () => {
+    router.push('/(tabs)');
+  };
 
-        <TouchableOpacity
-          style={styles.primaryButton}
-          onPress={() => console.log('Iniciar Calibração Pressed')}
-        >
-          <Text style={styles.primaryButtonText}>iniciar calibração</Text>
-        </TouchableOpacity>
+  const goToManualScreen = () => {
+    setCurrentScreen('manual');
+  };
 
-        <View style={styles.secondaryButtonsContainer}>
-          <TouchableOpacity
-            style={styles.secondaryButton}
-            onPress={() => console.log('Manual do Usuário Pressed')}
-          >
-            <Text style={styles.secondaryButtonText}>Manual do Usuário</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.secondaryButton}
-            onPress={() => console.log('Desenvolvedores Pressed')}
-          >
-            <Text style={styles.secondaryButtonText}>Desenvolvedores</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </SafeAreaView>
-  );
+  const goToDevelopersScreen = () => {
+    setCurrentScreen('developers');
+  };
+
+  const renderScreen = () => {
+    switch (currentScreen) {
+      case 'manual':
+        return <UserManualScreen onBack={() => setCurrentScreen('home')} />;
+      case 'developers':
+        return <DevelopersScreen onBack={() => setCurrentScreen('home')} />;
+      default:
+        return (
+          <View style={styles.content}>
+            <Image
+              source={require('../../assets/images/calibra-plus-logo.png')}
+              style={styles.logo}
+            />
+
+            <Text style={styles.version}>versão 0.0.1</Text>
+
+            <TouchableOpacity style={styles.primaryButton} onPress={() => goToCalculatorScreen()}>
+              <Text style={styles.primaryButtonText}>INICIAR CALIBRAÇÃO</Text>
+            </TouchableOpacity>
+
+            <View style={styles.secondaryButtonsContainer}>
+              <TouchableOpacity style={styles.secondaryButton} onPress={() => goToManualScreen()}>
+                <Text style={styles.secondaryButtonText}>Manual do usuário</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.secondaryButton}
+                onPress={() => goToDevelopersScreen()}
+              >
+                <Text style={styles.secondaryButtonText}>Desenvolvedores</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+    }
+  };
+
+  return <SafeAreaView style={styles.container}>{renderScreen()}</SafeAreaView>;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 20,
+    padding: 10,
+    display: 'flex',
+    flexDirection: 'row',
   },
   content: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: 50,
+    alignSelf: 'center',
   },
   logo: {
-    resizeMode: 'center',
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
   },
   version: {
     fontSize: 16,
@@ -60,28 +86,32 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#000',
-    backgroundColor: 'transparent',
+    borderColor: '#0e65b5',
+    backgroundColor: '#0d183d',
     alignItems: 'center',
     marginBottom: 20,
+    textAlign: 'center',
   },
   primaryButtonText: {
     fontSize: 18,
+    fontWeight: 'bold',
   },
   secondaryButtonsContainer: {
+    marginTop: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '80%',
+    width: '90%',
   },
   secondaryButton: {
-    width: '45%',
     padding: 10,
     borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#000',
+    borderWidth: 2,
+    borderColor: '#8bbf37',
+    backgroundColor: '#095e23',
     alignItems: 'center',
   },
   secondaryButtonText: {
     fontSize: 16,
+    textAlign: 'center',
   },
 });
