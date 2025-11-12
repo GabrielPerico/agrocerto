@@ -36,11 +36,26 @@ export default function CalculateScreen() {
   };
 
   const goToNextStep = (sprayer?: SprayerType) => {
-    if (!!sprayer && sprayer !== 'Pulverizador de Barra') {
+    if (checkIsSprayerTypeWithNoCalculation(sprayer)) {
       setCurrentStep(6);
     } else if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     }
+  };
+
+  const checkIsSprayerTypeWithNoCalculation = (
+    sprayer: SprayerType | null | undefined
+  ): boolean => {
+    return (
+      !!sprayer &&
+      [
+        'Drone',
+        'Atomizador (canhão de ar)',
+        'Turbo Atomizador',
+        'Pulverizador Costal Manual',
+        'Pulverizador Costal Motorizado',
+      ].includes(sprayer)
+    );
   };
 
   const goToPreviousStep = () => {
