@@ -17,7 +17,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.gabrielperico.agrocerto"
+      "package": "com.gabrielperico.calibraplus"
     },
     "web": {
       "bundler": "metro",
@@ -42,7 +42,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "95745e19-fd65-4806-864a-3ea7c76bc183"
+        "projectId": "613e2b20-b07b-4858-845f-850077b474e6"
       }
     }
   }
