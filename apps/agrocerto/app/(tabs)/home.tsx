@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: '#ffffff',
   },
   secondaryButtonsContainer: {
     marginTop: 30,
@@ -113,5 +114,6 @@ const styles = StyleSheet.create({
   secondaryButtonText: {
     fontSize: 16,
     textAlign: 'center',
+    color: '#ffffff',
   },
 });
