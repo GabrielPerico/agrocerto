@@ -1,178 +1,119 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useFocusEffect } from '@react-navigation/native';
-import StepIndicator from '@/components/StepIndicator';
-import SprayerSelection from '@/components/calculator/SprayerSelection';
-import CalculationType from '@/components/calculator/CalculationType';
-import SpeedCalculator from '@/components/calculator/SpeedCalculator';
-import NozzleConfiguration from '@/components/calculator/NozzleConfiguration';
-import FinalMeasurement from '@/components/calculator/FinalMeasurement';
-import EmBreve from '@/components/EmBreve';
-import { CalculationData, SprayerType } from '@/types/calculator';
+import { SafeAreaView, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { router } from 'expo-router';
+import { useState } from 'react';
+import DevelopersScreen from '@/components/home_subscreens/Developers';
+import UserManualScreen from '@/components/home_subscreens/UserManual';
 
-export default function CalculateScreen() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const scrollViewRef = useRef<ScrollView>(null);
-  const [calculationData, setCalculationData] = useState<CalculationData>({
-    sprayerType: null,
-    calculationMethod: null,
-    averageSpeed: null,
-    nozzleDistance: null,
-    measurementValue: null,
-    savedTimes: [],
-  });
+export default function HomeScreen() {
+  const [currentScreen, setCurrentScreen] = useState('home');
 
-  const totalSteps = 5;
-
-  useFocusEffect(
-    useCallback(() => {
-      scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-    }, [])
-  );
-
-  const updateCalculationData = (updates: Partial<CalculationData>) => {
-    setCalculationData((prev) => ({ ...prev, ...updates }));
+  const goToCalculatorScreen = () => {
+    router.push('/(tabs)/calculation');
   };
 
-  const goToNextStep = (sprayer?: SprayerType) => {
-    if (checkIsSprayerTypeWithNoCalculation(sprayer)) {
-      setCurrentStep(6);
-    } else if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
-    }
+  const goToManualScreen = () => {
+    setCurrentScreen('manual');
   };
 
-  const checkIsSprayerTypeWithNoCalculation = (
-    sprayer: SprayerType | null | undefined
-  ): boolean => {
-    return (
-      !!sprayer &&
-      [
-        'Drone',
-        'Atomizador (canhão de ar)',
-        'Turbo Atomizador',
-        'Pulverizador Costal Manual',
-        'Pulverizador Costal Motorizado',
-      ].includes(sprayer)
-    );
+  const goToDevelopersScreen = () => {
+    setCurrentScreen('developers');
   };
 
-  const goToPreviousStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
-  const resetCalculation = () => {
-    setCurrentStep(1);
-    setCalculationData({
-      sprayerType: null,
-      calculationMethod: null,
-      averageSpeed: null,
-      nozzleDistance: null,
-      measurementValue: null,
-      savedTimes: [],
-    });
-  };
-
-  const renderStep = () => {
-    switch (currentStep) {
-      case 1:
-        return (
-          <SprayerSelection
-            selectedSprayer={calculationData.sprayerType}
-            onSelect={(sprayer) => {
-              updateCalculationData({ sprayerType: sprayer });
-              goToNextStep(sprayer);
-            }}
-          />
-        );
-      case 2:
-        return (
-          <CalculationType
-            selectedMethod={calculationData.calculationMethod}
-            onSelect={(method) => updateCalculationData({ calculationMethod: method })}
-            onNext={goToNextStep}
-            onBack={goToPreviousStep}
-          />
-        );
-      case 3:
-        return (
-          <SpeedCalculator
-            averageSpeed={calculationData.averageSpeed}
-            savedTimes={calculationData.savedTimes}
-            onSpeedCalculated={(speed) => updateCalculationData({ averageSpeed: speed })}
-            onTimesUpdated={(times) => updateCalculationData({ savedTimes: times })}
-            onNext={goToNextStep}
-            onBack={goToPreviousStep}
-          />
-        );
-      case 4:
-        return (
-          <NozzleConfiguration
-            nozzleDistance={calculationData.nozzleDistance}
-            onDistanceSet={(distance) => updateCalculationData({ nozzleDistance: distance })}
-            onNext={goToNextStep}
-            onBack={goToPreviousStep}
-          />
-        );
-      case 5:
-        return (
-          <FinalMeasurement
-            calculationMethod={calculationData.calculationMethod}
-            measurementValue={calculationData.measurementValue}
-            onValueSet={(value) => updateCalculationData({ measurementValue: value })}
-            onBack={goToPreviousStep}
-            onComplete={resetCalculation}
-            calculationData={calculationData}
-            onScrollToResult={() => {
-              // Scroll to the bottom of the content to show the result
-              scrollViewRef.current?.scrollToEnd({ animated: true });
-            }}
-          />
-        );
-      case 6:
-        return (
-          <EmBreve
-            onBack={() => {
-              setCurrentStep(1);
-            }}
-          />
-        );
+  const renderScreen = () => {
+    switch (currentScreen) {
+      case 'manual':
+        return <UserManualScreen onBack={() => setCurrentScreen('home')} />;
+      case 'developers':
+        return <DevelopersScreen onBack={() => setCurrentScreen('home')} />;
       default:
-        return null;
+        return (
+          <View style={styles.content}>
+            <Image
+              source={require('../../assets/images/calibra-plus-logo.png')}
+              style={styles.logo}
+            />
+
+            <Text style={styles.version}>versão 0.0.1</Text>
+
+            <TouchableOpacity style={styles.primaryButton} onPress={() => goToCalculatorScreen()}>
+              <Text style={styles.primaryButtonText}>INICIAR CALIBRAÇÃO</Text>
+            </TouchableOpacity>
+
+            <View style={styles.secondaryButtonsContainer}>
+              <TouchableOpacity style={styles.secondaryButton} onPress={() => goToManualScreen()}>
+                <Text style={styles.secondaryButtonText}>Manual do usuário</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.secondaryButton}
+                onPress={() => goToDevelopersScreen()}
+              >
+                <Text style={styles.secondaryButtonText}>Desenvolvedores</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
     }
   };
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <StepIndicator currentStep={currentStep} totalSteps={totalSteps} />
-      </View>
-
-      <ScrollView ref={scrollViewRef} style={styles.content} showsVerticalScrollIndicator={false}>
-        {renderStep()}
-      </ScrollView>
-    </SafeAreaView>
-  );
+  return <SafeAreaView style={styles.container}>{renderScreen()}</SafeAreaView>;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8FAFC',
-  },
-  header: {
-    backgroundColor: '#FFFFFF',
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E2E8F0',
+    backgroundColor: '#fff',
+    padding: 10,
+    display: 'flex',
+    flexDirection: 'row',
   },
   content: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  logo: {
+    width: 300,
+    height: 300,
+  },
+  version: {
+    fontSize: 16,
+    color: '#666',
+    marginBottom: 50,
+  },
+  primaryButton: {
+    width: '80%',
+    padding: 15,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#0e65b5',
+    backgroundColor: '#0d183d',
+    alignItems: 'center',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  primaryButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#ffffff',
+  },
+  secondaryButtonsContainer: {
+    marginTop: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '90%',
+  },
+  secondaryButton: {
+    padding: 10,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: '#8bbf37',
+    backgroundColor: '#095e23',
+    alignItems: 'center',
+  },
+  secondaryButtonText: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: '#ffffff',
   },
 });

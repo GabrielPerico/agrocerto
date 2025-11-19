@@ -26,14 +26,14 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="home"
+        name="index"
         options={{
           title: 'Início',
           tabBarIcon: ({ size, color }) => <Home size={size} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="index"
+        name="calculation"
         options={{
           title: 'Cálculo',
           tabBarIcon: ({ size, color }) => <Calculator size={size} color={color} />,
